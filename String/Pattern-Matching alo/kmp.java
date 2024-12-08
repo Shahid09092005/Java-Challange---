@@ -1,6 +1,6 @@
 class Solution {
     
-    public static int[] ComputeLPS(String pat , int m){
+    public  int[] ComputeLPS(String pat , int m){
         // m is length of pat
         int[] LPSArray=new int[m];
         int length = 0;
@@ -8,7 +8,7 @@ class Solution {
         int i=1; // start with i=1
         while(i<m){
             // if currChar euqal to chat at leng.
-            if(pat.charAt(i) ==pat.charAt(length)){
+            if(pat.charAt(i) == pat.charAt(length)){
                 length++;
                 LPSArray[i]=length;
                 i++;
@@ -28,28 +28,27 @@ class Solution {
     ArrayList<Integer> search(String pat, String txt) {
         int n = txt.length(); // length of text
         int m = pat.length(); // length of pat
-        int[] LPS = ComputeLPS(String pat , m);
+        int[] LPS = ComputeLPS( pat , m);
         ArrayList<Integer> ls = new ArrayList<>();
-        int i=0;
-        int j=0;
-        while(i<n){
-            if(pat.charAt(i)==pat.charAt(j)){
-                i++;
-                j++;
-            }
-            if(j==m){
-                ls.add(i-j);
-                j = lps[j - 1];
-            }else if (pat.charAt(j) != txt.charAt(i)) {
-                // Mismatch after j matches
-                if (j != 0) {
-                    j = LPS[j - 1];
-                } else {
-                    i++;
-                }
-            }
-        }
-        
-         
+        int i=0; // for txt
+        int j=0;  // for pat
+       while(i<n){
+           if(txt.charAt(i)==pat.charAt(j)){ 
+               i++;
+               j++;
+           }
+           
+           if(j==m){
+               ls.add(i-j);
+               j=LPS[j-1];
+           }else if (i < n && txt.charAt(i) != pat.charAt(j)){
+               if(j>0){ // // Use the LPS array to move the pattern pointer
+                   j=LPS[j-1];
+               }else{ //// Only increment the text pointer if no prefix matches
+                   i++;
+               }
+           }
+       }
+       return ls;
     }
 }
