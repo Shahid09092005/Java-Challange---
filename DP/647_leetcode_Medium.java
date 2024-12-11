@@ -8,7 +8,7 @@ class Solution {
             if((str.charAt(s) == str.charAt(e)) && dp[s + 1][e - 1]){
                 dp[s][e]=true;
             }
-    }
+    } 
         // now retun it
         return dp[s][e];
     }
