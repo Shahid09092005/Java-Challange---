@@ -7,7 +7,7 @@ class Solution {
         }
         return dp[s][e];
     }
-
+ 
     public String longestPalindrome(String s) {
         int n = s.length();
         if (n == 0) return ""; // Handle empty string
