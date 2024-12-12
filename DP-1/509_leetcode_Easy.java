@@ -1,5 +1,5 @@
+                                                    // Memoization(top-down approach)
 class Solution { 
-    // 
     public int funct(int n,int[] dp){
         if(n==0 || n==1){ //Base case
             return dp[n];
@@ -22,5 +22,22 @@ class Solution {
         dp[1]=1;
         return funct(n,dp);
 
+    }
+}
+
+                                                    // Bottom up Approach
+class Solution {
+    public int fib(int n) {
+        if(n==1 || n==0) return n;
+        int a=0;    //first
+        int b=1;    //Second
+        int c=0;
+        while(n-2>=0){ //bcz first 2 already calculated
+            c=a+b;
+            a=b;
+            b=c;
+            n--;
+        }
+    return c;
     }
 }
