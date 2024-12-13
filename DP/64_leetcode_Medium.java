@@ -1,4 +1,4 @@
-                                        // Bottom up Approach 
+                                        // Bottom up Approach : T.C (n*m)^2 and S.C: n*m
 class Solution {
     public int minPathSum(int[][] grid) {
         int m = grid.length; // no. of rows
@@ -19,5 +19,53 @@ class Solution {
             }
         }
         return dp[0][0];
+    }
+}
+
+
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length; // number of rows
+        int n = grid[0].length; // number of columns
+        int[] dp = new int[n]; // 1D array for storing the minimum path sums
+        
+        // Initialize dp array for the bottom row
+        for (int j = n - 1; j >= 0; j--) {
+            if (j == n - 1) {
+                dp[j] = grid[m - 1][j];
+            } else {
+                dp[j] = grid[m - 1][j] + dp[j + 1];
+            }
+        }
+
+
+                                                 // Bottom up Approach : T.C (n*m)^2 and S.C: n;
+        class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length; // number of rows
+        int n = grid[0].length; // number of columns
+        int[] dp = new int[n]; // 1D array for storing the minimum path sums
+        
+        // Initialize dp array for the bottom row
+        for (int j = n - 1; j >= 0; j--) {
+            if (j == n - 1) {
+                dp[j] = grid[m - 1][j];
+            } else {
+                dp[j] = grid[m - 1][j] + dp[j + 1];
+            }
+        }
+        
+        // Fill dp array for rows above the bottom row
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (j == n - 1) {
+                    dp[j] = grid[i][j] + dp[j]; // last column
+                } else {
+                    dp[j] = grid[i][j] + Math.min(dp[j], dp[j + 1]);
+                }
+            }
+        }
+        
+        return dp[0]; // The minimum path sum will be stored in dp[0]
     }
 }
